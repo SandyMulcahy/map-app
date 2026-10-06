@@ -1,0 +1,436 @@
+/* Deliberately plain: black, white and greys. Route lines are the only colour. */
+:root {
+  --fg: #111111;
+  --muted: #666666;
+  --line: #d4d4d4;
+  --bg: #ffffff;
+  --bg-alt: #f4f4f4;
+  --radius: 4px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--fg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+code {
+  font-size: 0.9em;
+  background: var(--bg-alt);
+  padding: 0 3px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Controls ---------- */
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: var(--bg);
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background: var(--bg-alt);
+}
+
+button.primary {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+button.primary:hover:not(:disabled) {
+  background: #333333;
+}
+
+button:disabled {
+  border-color: var(--line);
+  color: #999999;
+  cursor: default;
+}
+
+button.primary:disabled {
+  background: #999999;
+  border-color: #999999;
+  color: var(--bg);
+}
+
+button.link {
+  border: 0;
+  padding: 0;
+  background: none;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+button.link:hover:not(:disabled) {
+  background: none;
+  color: var(--muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  background: var(--bg);
+}
+
+input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--fg);
+  flex: none;
+}
+
+input.swatch {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: none;
+  cursor: pointer;
+  flex: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.field > span {
+  color: var(--muted);
+}
+
+.field-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notice {
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* ---------- Layout ---------- */
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.email {
+  color: var(--muted);
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.sidebar {
+  flex: none;
+  width: 320px;
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel + .panel {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.distance {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.distance-value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Route list ---------- */
+
+.route-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.route {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.route:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.route-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.route-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.route-distance {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rename {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.route-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 6px 0 0 24px;
+}
+
+/* ---------- Map ---------- */
+
+.map-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-alt);
+  font: inherit;
+}
+
+.map-wrap.drawing .leaflet-container,
+.map-wrap.drawing .leaflet-grab,
+.map-wrap.drawing .leaflet-interactive {
+  cursor: crosshair;
+}
+
+.map-wrap.drawing .leaflet-dragging .leaflet-grab {
+  cursor: grabbing;
+}
+
+.map-tools {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000; /* above Leaflet's panes and controls */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.map-tools > * {
+  pointer-events: auto;
+}
+
+.map-note {
+  max-width: 220px;
+  background: var(--bg);
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Dialog ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 360px;
+  background: var(--bg);
+  border: 1px solid var(--fg);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Phones: map on top, panel underneath ---------- */
+
+@media (max-width: 700px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+
+  .sidebar {
+    width: auto;
+    max-height: 46%;
+    border-right: 0;
+    border-top: 1px solid var(--line);
+    padding: 12px 16px;
+    gap: 16px;
+  }
+
+  .panel + .panel {
+    padding-top: 16px;
+  }
+
+  .header {
+    padding: 8px 12px;
+  }
+
+  .email {
+    max-width: 40vw;
+  }
+
+  /* 16px stops iOS zooming the page when a field is focused */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    font-size: 16px;
+  }
+}
